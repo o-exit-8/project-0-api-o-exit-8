@@ -7,7 +7,7 @@ import { sessionMiddleware } from './middleware/session.middleware';
 const app = express();
 
 app.use((req, res, next) => {
-  console.log(`request made with url: ${req.url} and method: ${req.method}`);
+  console.log(`Request made with url: ${req.url} and method: ${req.method}`);
   // const headers = req.rawHeaders;
   // console.log(headers);
   next();

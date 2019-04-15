@@ -2,12 +2,12 @@ import { User } from './model/user';
 import { Spaceship } from './model/spaceship';
 
 export let users: User[] = [
-  new User(1, 'blake', 'pass', 'blake'),
-  new User(2, 'Bradley', 'pass', 'Bradley'),
-  new User(3, 'Shahram', 'pass', 'Shahram'),
-  new User(4, 'Pj', 'pass', 'Pj'),
-  new User(5, 'Danae', 'pass', 'Danae'),
-  new User(6, 'Fred', 'pass', 'Fred'),
+  new User(1, 'blake', 'pass' ),
+  new User(2, 'Bradley', 'pass'),
+  new User(3, 'Shahram', 'pass'),
+  new User(4, 'Pj', 'pass'),
+  new User(5, 'Danae', 'pass'),
+  new User(6, 'Fred', 'pass'),
 ];
 
 export let spaceships: Spaceship[] = [

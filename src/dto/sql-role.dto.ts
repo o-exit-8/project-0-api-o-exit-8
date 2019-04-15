@@ -1,5 +1,5 @@
 
 export class SqlRole {
-  id = 0;
-  role = '';
+  role_id = 0;
+  role = 'x';
 }
