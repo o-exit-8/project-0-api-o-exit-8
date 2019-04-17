@@ -13,7 +13,7 @@ export async function findUsersById(id: number) {
       const result = await client.query(queryString, [id]);
       console.log(result.rows);
       const user = result.rows[0];
-      console.log(`finding this user with: ${id} and name ${user.username}`);
+      console.log(`finding this user id#: ${user.user_id} and username: ${user.user_name }`);
       return user;
     } catch (err) {
       console.log(err);
@@ -39,26 +39,65 @@ export async function getAllUsers() {
       }
 }
 
+export async function update(user: SqlUser, id: number) {
+  let client: PoolClient;
+  const upUser = user;
+  try {
+    client = await connectionPool.connect();
+    console.log(`User with id#: ${id} would be modified.`);
+    console.log('current sqluser structure');
+    console.log(upUser);
+    const userData = [];
+    console.log('current data to sent to sql: ');
+    console.log(userData);
+    console.log(upUser.email);
+    const tableNameArray = Object.keys(upUser);
+    const ValuesArray = Object.values(upUser);
+    const userSqlR = [];
+    // let formatsqlUs;
+    for (let i = 0; i < tableNameArray.length; i++) {
+      if (tableNameArray.values != undefined) {
+        userSqlR.push(ValuesArray[i]);
+
+        }
+    }
+    console.log('userSQLR: ');
+    console.log (userSqlR);
+    console.log('this fields would be added after termination.');
+    console.log (userData);
+    const queryString = `UPDATE ers_api.users SET ${userData} WHERE user_id =${id}};`;
+    console.log('MEMEMEMEME: ' + queryString);
+    // const userData = [ship.owner, ship.name, ship.weight, ship.speed, ship.description];
+    const result = await client.query(queryString,  [userData, id]);
+    console.log(result.rows);
+    const user = result.rows[0];
+    console.log(`finding this user id#: ${user.user_id} and username: ${user.user_name }`);
+    return user;
+  } catch (err) {
+    console.log(err);
+    return undefined;
+  } finally {
+     client && client.release();
+   }
+}
 export async function addUser(user: SqlUser) {
   let client: PoolClient;
-  client = await connectionPool.connect();
-  console.log('coming from parson Object: ');
-  console.log(user);
-  client && client.release();
-  // try {
-  //   client = await connectionPool.connect();
-  //   const queryString = 'INSERT INTO ers_api.users (user_name, user_password, first_name, last_name, email, user_role) VALUES ($1, $2, $3, $4, $5, $6, $7);';
-  //   const result = await client.query(queryString, [user.user_id, user.user_name, user.user_password, user.first_name, user.last_name, user.email, user.user_role ]);
-  //   console.log(result.rows);
-  //     // const user = result.rows[0];
-  //     console.log(`Adding this user: ${user}`);
-  //     return user;
-  // } catch (err) {
-  //   console.log(err);
-  //   return undefined;
-  // } finally {
-  //   client && client.release();
-  // }
+  try {
+    client = await connectionPool.connect();
+    console.log('Adding user: ');
+    console.log(user);
+    const queryString = 'INSERT INTO ers_api.users (user_name, user_password, first_name, last_name, email, user_role) VALUES ($1, $2, $3, $4, $5, $6);';
+    const result = await client.query(queryString, [user.user_name, user.user_password, user.first_name, user.last_name, user.email, user.user_role ]);
+    console.log(`USER ADDED: `);
+    console.log(result.rows[0]);
+      // const user = result.rows[0];
+      return user;
+  } catch (err) {
+    console.log(err);
+    return undefined;
+  } finally {
+    client && client.release();
+  }
 }
 
 export async function findByUsernameAndPassword(username: string, password: string) {

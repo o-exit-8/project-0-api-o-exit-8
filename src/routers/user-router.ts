@@ -73,15 +73,36 @@ userRouter.post('/add', [
     console.log(response);
     const sqlUser = toSqlUser(response);
     const user = await userDao.addUser(sqlUser);
-    /* if (user) {
+    if (user) {
+      console.log(`User added:${user.user_name} with user id: ${user.user_id} `);
       res.json(user);
     } else {
       // res.sendStatus(401);
-      console.log('Internal Issue: User NO added.');
+      console.log('Internal Issue. User NO added.');
       res.sendStatus(404);
-    } */
+    }
   }]);
 
+  userRouter.patch('/update/:id', [
+    authMiddleware(['admin']),
+    async (req, res) => {
+      // convert id string to a number and pass to function.
+      // get user from body
+      const response = req.body;
+      const id: number = +req.params.id;
+      console.log(`Modifying user: with id: ${id}`);
+      console.log(response);
+      const sqlUser = toSqlUser(response);
+      const user = await userDao.update(sqlUser, id );
+      if (user) {
+        console.log(`User updated:${user.user_name} with user id#: ${user.user_id} `);
+        res.json(user);
+      } else {
+        // res.sendStatus(401);
+        console.log('Internal Issue. User NO added.');
+        res.sendStatus(404);
+      }
+    }]);
 userRouter.get('', [
   authMiddleware(['employee']),
    (req, res) => {

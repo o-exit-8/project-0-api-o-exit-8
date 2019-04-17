@@ -1,6 +1,6 @@
 //
 export class SqlUser {
-  user_id = 0;
+  user_id: number = NaN;
   user_name = '';
   user_password = '';
   first_name = '';
@@ -8,7 +8,7 @@ export class SqlUser {
   email = ' ';
   user_role: number = NaN;
 
-  constructor(user_id = 0, user_name = '', user_password = '', first_name, last_name, email = '', user_role = undefined) {
+  constructor(user_id, user_name = '', user_password = '', first_name, last_name, email = '', user_role = undefined) {
     this.user_id = user_id;
     this.user_name = user_name;
     this.user_password = user_password;

@@ -51,7 +51,7 @@ export async function findByOwner(ownerId: number) {
     client && client.release();
   }
 }
-
+// same as add
 export async function save(ship: Spaceship) {
   let client: PoolClient;
   try {
