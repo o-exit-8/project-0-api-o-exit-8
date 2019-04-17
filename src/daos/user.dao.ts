@@ -22,6 +22,7 @@ export async function findUsersById(id: number) {
       client && client.release();
     }
 }
+//
 export async function getAllUsers() {
   let client: PoolClient;
     try {

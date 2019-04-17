@@ -34,7 +34,7 @@ userRouter.post('/login', async (req, res) => {
  * endpoint: /users
  */
 userRouter.get('',  [
- authMiddleware(['admin']),
+  authMiddleware(['admin', 'manager']),
  async (req, res) => {
     const users = await userDao.getAllUsers();
     // console.log('retreiving all users');
@@ -47,7 +47,7 @@ userRouter.get('',  [
   }]);
 
   userRouter.get('/:id',  [
-    authMiddleware(['admin']),
+    authMiddleware(['admin', 'manager']),
     async (req, res) => {
       // convert id string to a number and pass to function.
       const id: number = +req.params.id;
@@ -64,7 +64,7 @@ userRouter.get('',  [
      }]);
 
 userRouter.post('/add', [
-  authMiddleware(['admin']),
+  authMiddleware(['admin', 'manager']),
   async (req, res) => {
     // convert id string to a number and pass to function.
     // get user from body
@@ -84,7 +84,7 @@ userRouter.post('/add', [
   }]);
 
   userRouter.patch('/update/:id', [
-    authMiddleware(['admin']),
+    authMiddleware(['admin', 'manager']),
     async (req, res) => {
       // convert id string to a number and pass to function.
       // get user from body

@@ -1,5 +1,5 @@
 import { User } from './model/user';
-import { Spaceship } from './model/spaceship';
+import { Reimbursement } from './model/reimbursement';
 
 export let users: User[] = [
   new User(1, 'blake', 'pass' ),
@@ -10,12 +10,8 @@ export let users: User[] = [
   new User(6, 'Fred', 'pass'),
 ];
 
-export let spaceships: Spaceship[] = [
-  new Spaceship(1, 2, 'Enterprise', 5000, 5000, 'its a ship'),
-  new Spaceship(2, 2, 'Tesla', 5000, 5000, 'its a ship'),
-  new Spaceship(3, 2, 'SS Minow', 5000, 5000, 'its a ship'),
-  new Spaceship(4, 2, 'X-Wing', 5000, 5000, 'its a ship'),
-  new Spaceship(5, 4, 'Salmon Catcher', 5000, 5000, 'its a ship'),
-  new Spaceship(6, 6, 'Serrenity', 5000, 5000, 'its a ship'),
-  new Spaceship(7, 3, 'Yes', 5000, 5000, 'its a ship'),
+export let Reimbursements: Reimbursement[] = [
+  new Reimbursement(1, 3 , 500, '10/5/2019', '10/06/2019', 'Medical', 2, 2, 3),
+  new Reimbursement(2, 4 , 200, '10/7/2019', '10/082019', 'Relocatin', 2, 1, 2),
+  new Reimbursement(3, 2 , 800, '10/8/2019', '10/09/2019', 'Training', 2, 3, 1),
 ];
