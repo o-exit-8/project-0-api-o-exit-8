@@ -25,6 +25,7 @@ reimbursementRouter.get('', [
  * find reimbursement by id
  * endpoint: /reimbursements/:id
  */
+// 
 reimbursementRouter.get('/:id', [authMiddleware(['admin', 'manager', 'employee']),
 async (req, res) => {
   const id = +req.params.id;

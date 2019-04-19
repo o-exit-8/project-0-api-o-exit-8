@@ -27,19 +27,23 @@ export async function findById(id: number) {
     const queryString = 'SELECT * FROM ers_api.reimbursement WHERE reimbursement_id = $1';
     // 'SELECT * FROM ers_api.users as u RIGHT JOIN ers_api.reimbursement as re ON u.user_id =re.author;';
     //
+    console.log(client);
     const result = await client.query(queryString, [id]);
     const statsId = result.rows[0].status;
     const username = result.rows[0].author;
-    console.log(`reimb Statys for client ${username} is: `  );
-    if (statsId === 1)
-  console.log('Completed');
-  else if (statsId === 2)
-  console.log('Pending');
-  else if (statsId === 3)
-  console.log('Denial');
-  else
-  console.log('not found.');
-    return result.rows[0] && convertSqlReimb(result.rows[0]);
+
+      console.log(`reimb Statys for client ${username} with user name ${statsId} `  );
+      if (statsId === 1)
+    console.log('Completed');
+    else if (statsId === 2)
+    console.log('Pending' );
+    else if (statsId === 3)
+    console.log('Denial');
+    else
+    console.log('not found.');
+
+      return result.rows[0] && convertSqlReimb(result.rows[0]);
+
   } catch (err) {
     console.log(err);
     return undefined;
