@@ -5,8 +5,7 @@ import { reimbursementRouter } from './routers/reimbursement-router';
 import { sessionMiddleware } from './middleware/session.middleware';
 
 const app = express();
-const port = process.env.SHIP_PORT || 8080;
-
+const port = process.env['SHIP_PORT'] || 8080;
 app.use((req, res, next) => {
   console.log(`Request made with url: ${req.url} and method: ${req.method}`);
   // const headers = req.rawHeaders;
@@ -28,6 +27,6 @@ app.use('/reimbursements', reimbursementRouter);
 
 // start up the application
 
-app.listen(8080, () => {
-  console.log(`application started` + port);
+app.listen(port, () => {
+  console.log(`application started`);
 });
